@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity() {
         tabLayout.initialize(viewPager ,supportFragmentManager,fragmentList,savedInstanceState)
         tabLayout.setTabFourIcon(R.drawable.ic_location_city_black_24dp)
         tabLayout.setTabFiveIcon(R.drawable.ic_people_black_24dp)
-
-
         
 
     }
