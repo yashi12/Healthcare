@@ -1,8 +1,11 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
+<<<<<<< Updated upstream
     <JetCodeStyleSettings>
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
+=======
+>>>>>>> Stashed changes
     <codeStyleSettings language="XML">
       <indentOptions>
         <option name="CONTINUATION_INDENT_SIZE" value="4" />
@@ -115,8 +118,11 @@
         </rules>
       </arrangement>
     </codeStyleSettings>
+<<<<<<< Updated upstream
     <codeStyleSettings language="kotlin">
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </codeStyleSettings>
+=======
+>>>>>>> Stashed changes
   </code_scheme>
 </component>
