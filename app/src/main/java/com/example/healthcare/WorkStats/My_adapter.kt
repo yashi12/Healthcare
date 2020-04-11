@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healthcare.Items.Statewise
-import com.example.healthcare.StatsWork.MoreDetail
-import com.example.healthcare.StatsWork.My_viewHolder
+import com.example.healthcare.WorkStats.MoreDetail
+import com.example.healthcare.WorkStats.My_viewHolder
 import com.example.healthcare.R
 
 
-class My_adapter(val myContext: Context, var list: MutableList<Statewise>, val vib: Vibrator) :
+class My_adapter(val myContext: Context, var list: MutableList<Statewise>) :
     RecyclerView.Adapter<My_viewHolder>() {
 
     val backG: ArrayList<Int> = arrayListOf(
@@ -27,9 +27,6 @@ class My_adapter(val myContext: Context, var list: MutableList<Statewise>, val v
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, i: Int): My_viewHolder {
-        if (vib.hasVibrator())
-            vib.cancel()
-
         val view = LayoutInflater.from(myContext).inflate(R.layout.list, parent, false)
         return My_viewHolder(view)
     }

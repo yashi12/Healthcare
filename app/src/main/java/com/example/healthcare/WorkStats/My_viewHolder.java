@@ -1,4 +1,4 @@
-package com.example.healthcare.StatsWork;
+package com.example.healthcare.WorkStats;
 
 import android.view.View;
 import android.widget.TextView;

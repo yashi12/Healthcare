@@ -1,6 +1,7 @@
-package com.example.healthcare.StatsWork
+package com.example.healthcare.WorkStats
 
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.os.Vibrator
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_more_detail.*
 
 class MoreDetail : AppCompatActivity() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_more_detail)
@@ -21,14 +23,18 @@ class MoreDetail : AppCompatActivity() {
         val inc = x.deltaconfirmed.toString().trim()
         val conf = x.confirmed.trim()
 
-        val animator = ValueAnimator.ofInt(0, inc.toInt())
-        animator.duration = 1500
+        if (inc.toInt() != 0) {
 
-        animator.addUpdateListener { it1 ->
-            dia_increase.text = "+${it1.animatedValue}"
-            vib.vibrate(2)
-        }
-        animator.start()
+            val animator = ValueAnimator.ofInt(0, inc.toInt())
+            animator.duration = 1500
+
+            animator.addUpdateListener { it1 ->
+                dia_increase.text = "+${it1.animatedValue}"
+                vib.vibrate(2)
+            }
+            animator.start()
+        } else
+            dia_increase.text = "+$inc"
 
         dia_place.text = x.state.toString().trim()
         dia_update.text = x.lastupdatedtime.trim()
