@@ -12,4 +12,7 @@
     <string name="your_name">Your Name</string>
     <string name="xyzheathcare_gmail_com">XYZHeathcare@gmail.com</string>
     <string name="add_your_address">Add your address</string>
+    <string name="description">description</string>
+    <string name="retry">Retry</string>
+    <string name="network_error">Network Error</string>
 </resources>
