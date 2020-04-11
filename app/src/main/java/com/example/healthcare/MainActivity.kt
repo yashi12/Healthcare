@@ -12,21 +12,22 @@ import eu.long1.spacetablayout.SpaceTabLayout
 class MainActivity : AppCompatActivity() {
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
         val fragmentList: ArrayList<Fragment> = ArrayList()
-        fragmentList.add(News())
+        fragmentList.add(NewsStats())
         fragmentList.add(Enquire())
         fragmentList.add(Analysis())
         fragmentList.add(Location())
         fragmentList.add(Profile())
 
+
         val coordinatorLayout = findViewById<CoordinatorLayout>(R.id.coordinatorLayout)
         val tabLayout: SpaceTabLayout = findViewById(R.id.spaceTabLayout)
+
 
         val viewPager: ViewPager = findViewById(R.id.viewPager)
         tabLayout.initialize(viewPager, supportFragmentManager, fragmentList, savedInstanceState)

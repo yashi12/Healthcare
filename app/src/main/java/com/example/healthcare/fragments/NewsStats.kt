@@ -24,7 +24,7 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.fragment_news.view.*
 import kushal.application.covaupdates.My_adapter
 
-class News : Fragment() {
+class NewsStats : Fragment() {
 
     val url = "https://api.covid19india.org/data.json"
     lateinit var mcontext: Context
@@ -55,9 +55,7 @@ class News : Fragment() {
 
                 val users = gson.fromJson(response, Example::class.java)
                 val list = users.statewise
-                val vib = mcontext.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-
-                val adapter = My_adapter(mcontext, list, vib)
+                val adapter = My_adapter(mcontext, list)
 
                 view.recyclerView.visibility = RecyclerView.VISIBLE
                 view.recyclerView.layoutManager = LinearLayoutManager(mcontext)
