@@ -3,36 +3,33 @@ package com.example.healthcare
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
-import android.content.ContentValues
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.widget.DatePicker
 import android.widget.Toast
-import androidx.annotation.IntegerRes
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.address_dialog.view.*
 import kotlinx.android.synthetic.main.fab_corona.view.*
 import kotlinx.android.synthetic.main.fragment__personal__deatails.*
-import kotlinx.android.synthetic.main.fragment__personal__deatails.view.*
-import kotlinx.android.synthetic.main.layout_dialog.*
 import kotlinx.android.synthetic.main.layout_dialog.view.*
 import kotlinx.android.synthetic.main.layout_dialog.view.error
 import kotlinx.android.synthetic.main.layout_dialog.view.id_cancel
 import kotlinx.android.synthetic.main.layout_dialog.view.id_saveChanges
-import org.w3c.dom.Text
+import java.text.SimpleDateFormat
+import java.util.*
 
-class Fragment_Personal_Deatails : Fragment(){
+class Fragment_Personal_Deatails : Fragment() {
     val PICK_IMAGE:Int = 1
     val pick_image_permission=1001
     var imageUri:Uri? = null
@@ -70,6 +67,43 @@ class Fragment_Personal_Deatails : Fragment(){
                 alertDialog.dismiss()
             }
         }
+    }
+    @SuppressLint("SetTextI18n")
+    private fun editdob(){
+        val cal=Calendar.getInstance()
+        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
+            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
+                                   dayOfMonth: Int) {
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, monthOfYear)
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val myFormat = "MM/dd/yyyy" // mention the format you need
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+                val today = Calendar.getInstance()
+                var age: Int = today[Calendar.YEAR] - cal.get(Calendar.YEAR)
+                if (today[Calendar.DAY_OF_MONTH] < cal.get(Calendar.DAY_OF_MONTH)) {
+                    age=age-1
+                }
+                    id_dob!!.text = "${sdf.format(cal.getTime()) } (${age} Years Old)"
+
+            }
+        }
+        id_dob_layout!!.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                context?.let {
+                    DatePickerDialog(
+                        it,
+                        dateSetListener,
+                        // set DatePickerDialog to point to today's date when it loads up
+                        cal.get(Calendar.YEAR),
+                        cal.get(Calendar.MONTH),
+                        cal.get(Calendar.DAY_OF_MONTH)).show()
+                }
+                Snackbar.make(view,"Please Enter Your Date Of Birth",Snackbar.LENGTH_LONG)
+                    .show()
+            }
+        })
+
     }
     @SuppressLint("SetTextI18n")
     private fun listenfab(){
@@ -207,6 +241,7 @@ class Fragment_Personal_Deatails : Fragment(){
         editaddress()
         editname()
         listenfab()
+        editdob()
         ProfileImage.setOnClickListener{
             checkpermission_gallery()
         }

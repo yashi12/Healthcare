@@ -33,7 +33,6 @@ class dialog: AppCompatDialogFragment() {
             email = view.findViewById(R.id.edit_data)
             builder.create()
         }   ?: throw IllegalStateException("Activity cannot be null")
-
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
